@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import entities.renameme.RenameMeRepository;
 import facades.FacadeExample;
+import javax.persistence.EntityManagerFactory;
 import utils.EMF_Creator;
 
 public class Provider {
@@ -17,8 +18,9 @@ public class Provider {
     }
 
     private static Repository createRepository() {
-        RenameMeRepository renameMeRepository = FacadeExample
-            .getFacadeExample(EMF_Creator.createEntityManagerFactory());
+        EntityManagerFactory emf = EMF_Creator.createEntityManagerFactory();
+
+        RenameMeRepository renameMeRepository = FacadeExample.getFacadeExample(emf);
 
         return new Repository(
             renameMeRepository
