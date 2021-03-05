@@ -9,30 +9,32 @@ import utils.EMF_Creator;
 
 public class Provider {
 
-    public static Repository repo;
-    public static Gson gson;
+    public static ParentRepository REPO;
+    public static Gson GSON;
 
     static {
-        repo = createRepository();
-        gson = new GsonBuilder().setPrettyPrinting().create();
+        REPO = createRepository();
+        GSON = new GsonBuilder().setPrettyPrinting().create();
     }
 
-    private static Repository createRepository() {
+    //Whenever a new repository is created add it here
+    private static ParentRepository createRepository() {
         EntityManagerFactory emf = EMF_Creator.createEntityManagerFactory();
 
         RenameMeRepository renameMeRepository = FacadeExample.getFacadeExample(emf);
 
-        return new Repository(
+        return new ParentRepository(
             renameMeRepository
         );
     }
 }
 
-class Repository {
+//Whenever a new repository is created add it here
+class ParentRepository {
 
     private final RenameMeRepository renameMeRepository;
 
-    Repository(RenameMeRepository renameMeRepository) {
+    ParentRepository(RenameMeRepository renameMeRepository) {
         this.renameMeRepository = renameMeRepository;
     }
 

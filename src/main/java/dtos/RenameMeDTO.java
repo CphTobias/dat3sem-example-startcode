@@ -8,6 +8,7 @@ package dtos;
 import entities.renameme.RenameMe;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -23,10 +24,10 @@ public class RenameMeDTO {
         this.str2 = dummyStr2;
     }
     
-    public static List<RenameMeDTO> getDtos(List<RenameMe> rms){
-        List<RenameMeDTO> rmdtos = new ArrayList();
-        rms.forEach(rm->rmdtos.add(new RenameMeDTO(rm)));
-        return rmdtos;
+    public static List<RenameMeDTO> getFromRenameMeList(List<RenameMe> rms){
+        return rms.stream()
+            .map(rm -> new RenameMeDTO(rm))
+            .collect(Collectors.toList());
     }
 
 

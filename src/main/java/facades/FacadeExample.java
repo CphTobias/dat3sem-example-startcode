@@ -77,7 +77,7 @@ public class FacadeExample implements RenameMeRepository {
         EntityManager em = emf.createEntityManager();
         TypedQuery<RenameMe> query = em.createQuery("SELECT r FROM RenameMe r", RenameMe.class);
         List<RenameMe> rms = query.getResultList();
-        return RenameMeDTO.getDtos(rms);
+        return RenameMeDTO.getFromRenameMeList(rms);
     }
     
     public static void main(String[] args) {
