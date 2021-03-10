@@ -1,6 +1,7 @@
 package rest;
 
-import errorhandling.GenericExceptionMapper;
+import utils.CorsFilter;
+import utils.errorhandling.GenericExceptionMapper;
 import java.util.Set;
 import javax.ws.rs.core.Application;
 import org.glassfish.jersey.server.wadl.internal.WadlResource;
@@ -22,6 +23,7 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(CorsFilter.class);
         resources.add(GenericExceptionMapper.class);
         resources.add(WadlResource.class);
         resources.add(RenameMeResource.class);

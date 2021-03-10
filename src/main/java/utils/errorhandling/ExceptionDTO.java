@@ -1,4 +1,4 @@
-package errorhandling;
+package utils.errorhandling;
 
 public class ExceptionDTO {
     private final int code;

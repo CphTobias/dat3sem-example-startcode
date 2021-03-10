@@ -25,7 +25,7 @@ public class FacadeExampleTest {
     @BeforeAll
     public static void setUpClass() {
        emf = EMF_Creator.createEntityManagerFactoryForTest();
-       repo = FacadeExample.getFacadeExample(emf);
+       repo = FacadeExample.getInstance(emf);
     }
 
     @AfterAll

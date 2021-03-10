@@ -1,4 +1,4 @@
-package errorhandling;
+package utils.errorhandling;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

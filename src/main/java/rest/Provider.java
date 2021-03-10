@@ -21,7 +21,7 @@ public class Provider {
     private static ParentRepository createRepository() {
         EntityManagerFactory emf = EMF_Creator.createEntityManagerFactory();
 
-        RenameMeRepository renameMeRepository = FacadeExample.getFacadeExample(emf);
+        RenameMeRepository renameMeRepository = FacadeExample.getInstance(emf);
 
         return new ParentRepository(
             renameMeRepository

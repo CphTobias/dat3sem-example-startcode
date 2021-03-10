@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.tobias-z</groupId>
+    <groupId>com.insession</groupId>
     <artifactId>testing-startcode</artifactId>
     <version>1.0.1</version>
     <packaging>war</packaging>
@@ -16,7 +16,7 @@
         <!-- TODO: Add the URL to your own tomcat server. Used to deploy your WAR-file -->
         <!-- IMPORTANT-1: If your server uses https (via NGINX) use your DOMAIN NAME and https below: -->
         <!-- IMPORTANT-2: Observe we are NOT using /manager/html but /manager/text for script uploads --> 
-        <remote.server>https://tobias-z.com/manager/text</remote.server>
+        <remote.server>https://tobias-z.com/api/manager/text</remote.server>
         
     </properties>
     
@@ -33,13 +33,13 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.17</version>
         </dependency>
-      
+
         <dependency>
             <groupId>org.glassfish.jersey.bundles</groupId>
             <artifactId>jaxrs-ri</artifactId>
             <version>2.32</version>
         </dependency>
-        
+
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>

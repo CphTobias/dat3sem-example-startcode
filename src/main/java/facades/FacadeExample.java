@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
+import javax.ws.rs.WebApplicationException;
 import utils.EMF_Creator;
 
 /**
@@ -27,7 +28,7 @@ public class FacadeExample implements RenameMeRepository {
      * @param _emf
      * @return an instance of this repository class.
      */
-    public static FacadeExample getFacadeExample(EntityManagerFactory _emf) {
+    public static FacadeExample getInstance(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
             instance = new FacadeExample();
@@ -35,14 +36,10 @@ public class FacadeExample implements RenameMeRepository {
         return instance;
     }
 
-    private EntityManager getEntityManager() {
-        return emf.createEntityManager();
-    }
-
     @Override
-    public void create(RenameMeDTO rm){
+    public void create(RenameMeDTO rm) throws WebApplicationException {
         RenameMe rme = new RenameMe(rm.getDummyStr1(), rm.getDummyStr2());
-        EntityManager em = getEntityManager();
+        EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             em.persist(rme);
@@ -55,14 +52,14 @@ public class FacadeExample implements RenameMeRepository {
     }
 
     @Override
-    public RenameMeDTO getById(long id){
-        EntityManager em = getEntityManager();
+    public RenameMeDTO getById(long id) throws WebApplicationException {
+        EntityManager em = emf.createEntityManager();
         return new RenameMeDTO(em.find(RenameMe.class, id));
     }
 
     @Override
-    public long getRenameMeCount(){
-        EntityManager em = getEntityManager();
+    public long getRenameMeCount() throws WebApplicationException {
+        EntityManager em = emf.createEntityManager();
         try{
             long renameMeCount = (long)em.createQuery("SELECT COUNT(r) FROM RenameMe r").getSingleResult();
             return renameMeCount;
@@ -73,7 +70,7 @@ public class FacadeExample implements RenameMeRepository {
     }
 
     @Override
-    public List<RenameMeDTO> getAll(){
+    public List<RenameMeDTO> getAll() throws WebApplicationException {
         EntityManager em = emf.createEntityManager();
         TypedQuery<RenameMe> query = em.createQuery("SELECT r FROM RenameMe r", RenameMe.class);
         List<RenameMe> rms = query.getResultList();
@@ -82,7 +79,7 @@ public class FacadeExample implements RenameMeRepository {
     
     public static void main(String[] args) {
         emf = EMF_Creator.createEntityManagerFactory();
-        FacadeExample fe = getFacadeExample(emf);
+        FacadeExample fe = getInstance(emf);
         fe.getAll().forEach(dto->System.out.println(dto));
     }
 
