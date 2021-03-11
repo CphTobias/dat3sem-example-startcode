@@ -1,6 +1,9 @@
 package rest;
 
+import dtos.RenameMeDTO;
 import entities.renameme.RenameMe;
+import io.restassured.http.ContentType;
+import java.util.List;
 import utils.EMF_Creator;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
@@ -13,7 +16,11 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.http.util.HttpStatus;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
+
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItems;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -84,13 +91,20 @@ public class RenameMeResourceTest {
 
     //This test assumes the database contains two rows
     @Test
-    public void testDummyMsg() throws Exception {
-        given()
-                .contentType("application/json")
-                .get("/xxx/").then()
-                .assertThat()
-                .statusCode(HttpStatus.OK_200.getStatusCode())
-                .body("msg", equalTo("Hello World"));
+    public void testGetAll() throws Exception {
+        List<RenameMeDTO> foundRenameMes;
+
+        foundRenameMes = given()
+            .contentType(ContentType.JSON)
+            .get("/xxx/").then()
+            .assertThat()
+            .statusCode(HttpStatus.OK_200.getStatusCode())
+            .extract().body().jsonPath().getList("", RenameMeDTO.class);
+
+        assertThat(foundRenameMes, hasItems(
+            new RenameMeDTO(r1),
+            new RenameMeDTO(r2)
+        ));
     }
 
     @Test

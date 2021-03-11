@@ -1,4 +1,4 @@
-package rest;
+package rest.provider;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -12,10 +12,10 @@ import utils.EMF_Creator;
 
 @Produces({MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_JSON})
-public class Provider {
+public abstract class Provider implements RestProvider {
 
-    public static ParentRepository REPO;
-    public static Gson GSON;
+    protected static ParentRepository REPO;
+    protected static Gson GSON;
 
     static {
         REPO = createRepository();
@@ -34,16 +34,3 @@ public class Provider {
     }
 }
 
-//Whenever a new repository is created add it here
-class ParentRepository {
-
-    private final RenameMeRepository renameMeRepository;
-
-    ParentRepository(RenameMeRepository renameMeRepository) {
-        this.renameMeRepository = renameMeRepository;
-    }
-
-    public RenameMeRepository getRenameMeRepo() {
-        return renameMeRepository;
-    }
-}
