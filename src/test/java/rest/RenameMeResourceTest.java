@@ -89,7 +89,6 @@ public class RenameMeResourceTest {
         given().when().get("/xxx").then().statusCode(200);
     }
 
-    //This test assumes the database contains two rows
     @Test
     public void testGetAll() throws Exception {
         List<RenameMeDTO> foundRenameMes;
@@ -105,15 +104,5 @@ public class RenameMeResourceTest {
             new RenameMeDTO(r1),
             new RenameMeDTO(r2)
         ));
-    }
-
-    @Test
-    public void testCount() throws Exception {
-        given()
-                .contentType("application/json")
-                .get("/xxx/count").then()
-                .assertThat()
-                .statusCode(HttpStatus.OK_200.getStatusCode())
-                .body("count", equalTo(2));
     }
 }
