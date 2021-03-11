@@ -10,8 +10,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 //Todo Remove or change relevant parts before ACTUAL use
+//Consumes and produces are provided by the provider
 @Path("xxx")
-@Produces({MediaType.APPLICATION_JSON})
 public class RenameMeResource extends Provider {
 
     @GET
@@ -19,8 +19,8 @@ public class RenameMeResource extends Provider {
         return "{\"msg\":\"Hello World\"}";
     }
 
-    @Path("count")
     @GET
+    @Path("count")
     public String getRenameMeCount() {
         long count = REPO.getRenameMeRepo().getRenameMeCount();
         //System.out.println("--------------->"+count);
