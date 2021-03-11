@@ -1,7 +1,7 @@
 package rest;
 
-import rest.provider.Provider;
-import utils.CorsFilter;
+import utils.cors.CorsRequestFilter;
+import utils.cors.CorsResponseFilter;
 import utils.errorhandling.GenericExceptionMapper;
 import java.util.Set;
 import javax.ws.rs.core.Application;
@@ -24,7 +24,8 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(CorsFilter.class);
+        resources.add(CorsRequestFilter.class);
+        resources.add(CorsResponseFilter.class);
         resources.add(GenericExceptionMapper.class);
         resources.add(WadlResource.class);
         resources.add(RenameMeResource.class);
