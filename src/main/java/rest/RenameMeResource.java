@@ -32,8 +32,9 @@ public class RenameMeResource extends Provider {
 
     @Override
     public Response create(String requestBody) {
-        //TODO (tz): implement this!
-        throw new UnsupportedOperationException("Not yet implemented!");
+        RenameMeDTO parsedBody = GSON.fromJson(requestBody, RenameMeDTO.class);
+        RenameMeDTO createdRenameMe = REPO.getRenameMeRepo().create(parsedBody);
+        return Response.ok(GSON.toJson(createdRenameMe)).build();
     }
 
     @Override

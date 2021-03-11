@@ -20,9 +20,9 @@ public class RenameMeDTO {
     private String str1;
     private String str2;
 
-    public RenameMeDTO(String dummyStr1, String dummyStr2) {
-        this.str1 = dummyStr1;
-        this.str2 = dummyStr2;
+    public RenameMeDTO(String str1, String str2) {
+        this.str1 = str1;
+        this.str2 = str2;
     }
     
     public static List<RenameMeDTO> getFromRenameMeList(List<RenameMe> rms){
