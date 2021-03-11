@@ -24,7 +24,6 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(Provider.class);
         resources.add(CorsFilter.class);
         resources.add(GenericExceptionMapper.class);
         resources.add(WadlResource.class);
