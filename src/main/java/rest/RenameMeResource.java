@@ -2,7 +2,6 @@ package rest;
 
 import dtos.RenameMeDTO;
 import java.util.List;
-import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import rest.provider.Provider;
