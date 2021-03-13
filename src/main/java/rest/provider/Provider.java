@@ -3,7 +3,9 @@ package rest.provider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import entities.renameme.RenameMeRepository;
+import entities.renameme.TestRepository;
 import facades.FacadeExample;
+import facades.Tse;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
@@ -27,9 +29,11 @@ public abstract class Provider implements RestProvider {
         EntityManagerFactory emf = EMF_Creator.createEntityManagerFactory();
 
         RenameMeRepository renameMeRepository = FacadeExample.getInstance(emf);
+        TestRepository testRepository = Tse.getInstance(emf);
 
         return new ParentRepository(
-            renameMeRepository
+            renameMeRepository,
+            testRepository
         );
     }
 }
