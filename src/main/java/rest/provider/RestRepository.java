@@ -9,7 +9,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
 //Will be implemented whenever you extend the Provider class
-public interface RestProvider {
+public interface RestRepository {
 
     @GET
     Response getAll();
