@@ -11,7 +11,7 @@
 * [Github](https://github.com/RasmusDH)
 
 **Tobias Zimmermann**
-* [Github](https://github.com/CphTobias)
+* [Github](https://github.com/tobias-z)
 
 ## Getting started
 1. Change the `remote.server` to your domain in the pom.xml
