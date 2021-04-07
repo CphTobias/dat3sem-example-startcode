@@ -1,5 +1,6 @@
 package rest;
 
+import dtos.DTOEntity;
 import dtos.RenameMeDTO;
 import entities.renameme.RenameMeRepository;
 import facades.FacadeExample;
@@ -17,13 +18,14 @@ public class RenameMeResource extends Provider {
 
     @Override
     public Response getById(int id) {
-        RenameMeDTO renameMeDTO = REPO.getById(id);
+        DTOEntity renameMeDTO = REPO.getById(id);
         return Response.ok(GSON.toJson(renameMeDTO)).build();
     }
 
     @Override
     public Response getAll() {
-        List<RenameMeDTO> renameMeDTO = REPO.getAll();
+        List<DTOEntity> renameMeDTO = REPO.getAll();
+        System.out.println(renameMeDTO.get(0).toString());
         return Response.ok(GSON.toJson(renameMeDTO)).build();
     }
 
@@ -36,7 +38,7 @@ public class RenameMeResource extends Provider {
     @Override
     public Response create(String requestBody) {
         RenameMeDTO parsedBody = GSON.fromJson(requestBody, RenameMeDTO.class);
-        RenameMeDTO createdRenameMe = REPO.create(parsedBody);
+        DTOEntity createdRenameMe = REPO.create(parsedBody);
         return Response.ok(GSON.toJson(createdRenameMe)).build();
     }
 

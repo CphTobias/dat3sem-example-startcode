@@ -6,7 +6,6 @@
 package dtos;
 
 import entities.renameme.RenameMe;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -15,16 +14,20 @@ import java.util.stream.Collectors;
  *
  * @author tha
  */
-public class RenameMeDTO {
+public class RenameMeDTO implements DTOEntity {
+
     private long id;
     private String str1;
     private String str2;
+
+    public RenameMeDTO() {
+    }
 
     public RenameMeDTO(String str1, String str2) {
         this.str1 = str1;
         this.str2 = str2;
     }
-    
+
     public static List<RenameMeDTO> getFromRenameMeList(List<RenameMe> rms){
         return rms.stream()
             .map(rm -> new RenameMeDTO(rm))
@@ -52,6 +55,14 @@ public class RenameMeDTO {
 
     public void setDummyStr2(String dummyStr2) {
         this.str2 = dummyStr2;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     @Override

@@ -53,9 +53,13 @@ public class RenameMe implements Serializable {
     public void setDummyStr2(String dummyStr2) {
         this.dummyStr2 = dummyStr2;
     }
-    
-    
-    
 
-   
+    @Override
+    public String toString() {
+        return "RenameMe{" +
+            "id=" + id +
+            ", dummyStr1='" + dummyStr1 + '\'' +
+            ", dummyStr2='" + dummyStr2 + '\'' +
+            '}';
+    }
 }

@@ -1,14 +1,16 @@
 package facades;
 
+import dtos.DTOEntity;
 import dtos.RenameMeDTO;
 import entities.renameme.RenameMe;
 import entities.renameme.RenameMeRepository;
+import java.util.Collections;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import javax.ws.rs.WebApplicationException;
-import utils.EMF_Creator;
+import utils.DtoUtils;
 
 /**
  * Rename Class to a relevant name Add add relevant repository methods
@@ -36,7 +38,7 @@ public class FacadeExample implements RenameMeRepository {
     }
 
     @Override
-    public RenameMeDTO create(RenameMeDTO rm) throws WebApplicationException {
+    public DTOEntity create(RenameMeDTO rm) throws WebApplicationException {
         RenameMe rme = new RenameMe(rm.getDummyStr1(), rm.getDummyStr2());
         EntityManager em = emf.createEntityManager();
         try {
@@ -46,13 +48,14 @@ public class FacadeExample implements RenameMeRepository {
         } finally {
             em.close();
         }
-        return new RenameMeDTO(rme);
+        return DtoUtils.convertToDto(rme, new RenameMeDTO());
     }
 
     @Override
-    public RenameMeDTO getById(long id) throws WebApplicationException {
+    public DTOEntity getById(long id) throws WebApplicationException {
         EntityManager em = emf.createEntityManager();
-        return new RenameMeDTO(em.find(RenameMe.class, id));
+        RenameMe renameMe = em.find(RenameMe.class, id);
+        return DtoUtils.convertToDto(renameMe, new RenameMeDTO());
     }
 
     @Override
@@ -68,11 +71,13 @@ public class FacadeExample implements RenameMeRepository {
     }
 
     @Override
-    public List<RenameMeDTO> getAll() throws WebApplicationException {
+    public List<DTOEntity> getAll() throws WebApplicationException {
         EntityManager em = emf.createEntityManager();
         TypedQuery<RenameMe> query = em.createQuery("SELECT r FROM RenameMe r", RenameMe.class);
         List<RenameMe> rms = query.getResultList();
-        return RenameMeDTO.getFromRenameMeList(rms);
+        System.out.println(rms);
+
+        return DtoUtils.convertList(rms, new RenameMeDTO());
     }
 
 }
